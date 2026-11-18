@@ -10,6 +10,9 @@ import { Planes } from './pages/Planes'
 import { Buscar } from './pages/Buscar'
 import { Estudio } from './pages/Estudio'
 import { Overlays } from './components/Overlays'
+import { Player } from './components/Player'
+import { PeliculasHome, PeliculaView } from './pages/Peliculas'
+import { Musica } from './pages/Musica'
 import { useStore } from './lib/store'
 
 const Jardin = lazy(() => import('./pages/Jardin'))
@@ -22,6 +25,8 @@ const NAV = [
   { to: '/catecismo', label: 'Catecismo', icon: '✝️' },
   { to: '/enciclicas', label: 'Documentos pontificios', icon: '📜' },
   { to: '/santos', label: 'Santos', icon: '😇' },
+  { to: '/peliculas', label: 'Películas', icon: '🎬' },
+  { to: '/musica', label: 'Música sacra', icon: '🎼' },
   { to: '/oraciones', label: 'Oraciones', icon: '📿' },
   { to: '/planes', label: 'Planes', icon: '📅' },
   { to: '/jardin', label: 'Jardín', icon: '🌳' },
@@ -94,6 +99,9 @@ function Shell() {
             <Route path="/enciclicas/:id" element={<EnciclicaView />} />
             <Route path="/santos" element={<SantosHome />} />
             <Route path="/santos/:id" element={<SantoView />} />
+            <Route path="/peliculas" element={<PeliculasHome />} />
+            <Route path="/peliculas/:id" element={<PeliculaView />} />
+            <Route path="/musica" element={<Musica />} />
             <Route path="/oraciones" element={<Oraciones />} />
             <Route path="/planes" element={<Planes />} />
             <Route path="/jardin" element={<Jardin />} />
@@ -104,6 +112,7 @@ function Shell() {
         </Suspense>
       </main>
       <Overlays />
+      <Player />
     </div>
   )
 }

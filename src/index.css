@@ -1757,3 +1757,109 @@ mark {
   cursor: pointer;
   margin-top: 8px;
 }
+
+/* ---------- Películas ---------- */
+.film-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin-top: 16px; }
+.film-card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; color: var(--ink); box-shadow: var(--shadow); transition: transform .15s; }
+.film-card:hover { transform: translateY(-3px); text-decoration: none; }
+.film-card.done { border-color: var(--ok); }
+.film-poster { position: relative; aspect-ratio: 16/10; background: radial-gradient(circle at 30% 20%, #6b1f33, #1b1416 75%); display: flex; align-items: flex-end; padding: 12px; color: #f3e3bf; }
+.film-ptitle { font-family: var(--display); font-size: 22px; font-weight: 600; line-height: 1.1; }
+.film-year { position: absolute; top: 10px; left: 12px; font-size: 12px; letter-spacing: .1em; opacity: .8; }
+.film-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%); width: 46px; height: 46px; border-radius: 50%; background: rgba(243, 227, 191, .9); color: #6b1f33; display: grid; place-items: center; font-size: 18px; }
+.film-body { padding: 12px 14px 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { font-size: 12px; padding: 3px 9px; border-radius: 99px; background: var(--surface-2); color: var(--muted); }
+.chip.big { font-size: 14px; padding: 6px 12px; color: var(--ink); }
+.video-frame { position: relative; aspect-ratio: 16/9; background: #000; border-radius: var(--radius); overflow: hidden; margin: 12px 0 18px; box-shadow: var(--shadow); }
+.video-frame iframe, .video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-frame.small { margin: 10px 0; }
+.video-frame.small .btn { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.6); color: #fff; }
+.add-form { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; padding: 16px; }
+.add-form summary { cursor: pointer; font-weight: 600; }
+.danger-text { color: var(--danger); margin: 0; }
+.lead { font-family: var(--serif); font-size: 18px; line-height: 1.6; }
+
+/* ---------- Música ---------- */
+.music-hero { display: flex; gap: 20px; align-items: center; background: linear-gradient(120deg, #2a1a20, #6b1f33); color: #f3e3bf; border-radius: var(--radius); padding: 20px; margin: 10px 0 16px; }
+.music-hero .title { font-family: var(--display); font-size: 28px; font-weight: 600; }
+.music-hero .muted { color: #e8d6b0; margin-bottom: 10px; }
+.music-hero .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; opacity: .8; }
+.music-cover { width: 120px; height: 120px; flex: none; border-radius: 12px; background: radial-gradient(circle, #d8b25f, #8a5f1f); display: grid; place-items: center; font-size: 46px; color: #2b2320; box-shadow: 0 8px 24px rgba(0,0,0,.35); text-align: center; line-height: 1; }
+.music-cover span { display: block; font-family: var(--display); font-size: 16px; font-style: italic; }
+.wrap-seg { flex-wrap: wrap; }
+.tracklist { list-style: none; padding: 0; margin: 14px 0; }
+.tracklist li { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; border-bottom: 1px solid var(--line); }
+.tracklist li:hover { background: var(--surface-2); }
+.tracklist li.on { background: var(--gold-soft); }
+.track-play { width: 38px; height: 38px; flex: none; border-radius: 50%; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+.track-main { flex: 1; cursor: pointer; min-width: 0; }
+.track-title { font-weight: 600; }
+.track-sub { font-size: 13px; color: var(--muted); }
+.track-note { font-size: 13px; font-family: var(--serif); margin-top: 3px; }
+.player { position: fixed; z-index: 60; right: 16px; bottom: 16px; width: min(420px, calc(100vw - 32px)); background: var(--surface); border: 1px solid var(--line); box-shadow: 0 10px 40px rgba(0,0,0,.25); border-radius: 16px; padding: 10px 14px; display: grid; gap: 6px; }
+.player-info { display: flex; gap: 10px; align-items: center; }
+.player-disc { font-size: 24px; }
+.player-title { font-weight: 600; font-size: 14px; }
+.player-sub { font-size: 12px; color: var(--muted); }
+.player-ctl { display: flex; justify-content: center; gap: 4px; }
+.player-ctl .on { background: var(--gold-soft); }
+.player-ctl .play { background: var(--accent); color: #fff; }
+.player-seek { display: flex; gap: 8px; align-items: center; font-size: 11px; color: var(--muted); }
+.player-seek input { flex: 1; accent-color: var(--accent); }
+
+/* ---------- Libro del santo ---------- */
+.book-page { max-width: 980px; }
+.book-toolbar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.book-toolbar select { max-width: 360px; }
+.book { display: flex; align-items: stretch; gap: 10px; perspective: 1600px; }
+.book-nav { flex: none; width: 46px; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; font-size: 34px; color: var(--accent); cursor: pointer; }
+.book-nav:disabled { opacity: .3; cursor: default; }
+.book-nav:not(:disabled):hover { background: var(--gold-soft); }
+.book-sheet { flex: 1; min-width: 0; position: relative; }
+.leaf { position: relative; min-height: 560px; height: 70vh; display: flex; flex-direction: column; background: linear-gradient(90deg, rgba(0,0,0,.07), transparent 4%), var(--surface); border: 1px solid var(--line); border-radius: 6px 14px 14px 6px; box-shadow: var(--shadow), inset 6px 0 0 var(--gold-soft); padding: 26px 34px 14px 40px; transform-origin: left center; }
+.leaf.in-right { animation: leafR .45s ease-out; }
+.leaf.in-left { animation: leafL .45s ease-out; }
+@keyframes leafR { from { transform: rotateY(-28deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes leafL { from { transform: rotateY(18deg) translateX(-20px); opacity: 0; } to { transform: none; opacity: 1; } }
+.leaf-head { font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--accent); border-bottom: 1px solid var(--gold); padding-bottom: 6px; margin-bottom: 14px; }
+.leaf-body { flex: 1; overflow-y: auto; padding-right: 6px; }
+.leaf-body p { font-family: var(--serif); font-size: var(--fs); line-height: 1.7; }
+.leaf-foot { text-align: center; font-size: 12px; color: var(--muted); padding-top: 8px; font-style: italic; }
+.leaf.cover { padding: 0; overflow: hidden; }
+.leaf.cover .leaf-foot { position: absolute; bottom: 10px; left: 0; right: 0; color: #e8d6b0; }
+.book-cover { height: 100%; display: grid; place-items: center; padding: 20px; color: #f3e3bf; text-align: center; }
+.cover-frame { border: 2px solid #d8b25f; outline: 1px solid #d8b25f; outline-offset: 6px; padding: 26px 30px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.cover-frame h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 46px); margin: 0; color: #fff3d6; }
+.cover-kicker { text-transform: uppercase; letter-spacing: .3em; font-size: 12px; }
+.cover-feast { font-style: italic; }
+.cover-sub { font-size: 13px; max-width: 380px; opacity: .85; }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0 0 16px; }
+.facts dt { font-weight: 600; color: var(--accent); }
+.facts dd { margin: 0; }
+.book-portrait { float: right; max-width: 40%; max-height: 300px; margin: 0 0 12px 16px; border-radius: 8px; border: 4px solid var(--gold-soft); }
+.flag-page, .quote-page { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding-top: 10px; }
+.saint-flag { filter: drop-shadow(0 6px 12px rgba(0,0,0,.25)); }
+.big-q { font-family: var(--display); font-size: 120px; line-height: .6; color: var(--gold); margin-top: 40px; }
+.saint-quote.big { font-family: var(--display); font-size: clamp(24px, 3.4vw, 34px); line-height: 1.35; border: 0; max-width: 620px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+.gal-item { padding: 0; border: 0; border-radius: 8px; overflow: hidden; aspect-ratio: 3/4; cursor: zoom-in; background: var(--surface-2); }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s; }
+.gal-item:hover img { transform: scale(1.06); }
+.src { font-size: 12px !important; color: var(--muted); font-family: var(--sans) !important; }
+.link-list { list-style: none; padding: 0; display: grid; gap: 8px; }
+.link-list a { display: block; padding: 10px 14px; border-radius: 10px; background: var(--surface-2); }
+.book-dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+.book-dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 0; background: var(--line); cursor: pointer; }
+.book-dots button.on { background: var(--accent); transform: scale(1.4); }
+.lightbox { position: fixed; inset: 0; z-index: 90; background: rgba(0,0,0,.88); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; cursor: zoom-out; }
+.lightbox img { max-width: 100%; max-height: 82vh; border-radius: 6px; }
+.lb-cap { color: #eee; margin-top: 10px; font-size: 13px; text-align: center; }
+.lb-cap a { color: #f3e3bf; }
+@media (max-width: 640px) {
+  .book-nav { width: 32px; font-size: 26px; }
+  .leaf { padding: 18px 16px 10px 22px; height: 72vh; }
+  .book-portrait { float: none; max-width: 100%; margin: 0 0 12px; }
+  .music-hero { flex-direction: column; text-align: center; }
+}
+.leaf-body.doc-body { border: 0; background: none; padding: 0 6px 0 0; box-shadow: none; border-radius: 0; }
