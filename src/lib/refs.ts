@@ -1,5 +1,5 @@
 import { CIC } from '../data/catecismo'
-import { ENCICLICAS } from '../data/enciclicas'
+import { LEGACY, vatTitle } from './vaticano'
 import { SANTOS } from '../data/santos'
 import { ORACIONES } from '../data/oraciones'
 import { bookNames } from './bible'
@@ -13,7 +13,7 @@ export function refLink(ref: string): string {
   }
   const id = rest.split(':')[0]
   if (kind === 'cic') return `/catecismo/${id}`
-  if (kind === 'enc') return `/enciclicas/${id}`
+  if (kind === 'enc') return `/enciclicas/${LEGACY[id] || id}`
   if (kind === 'san') return `/santos/${id}`
   if (kind === 'ora') return `/oraciones#${id}`
   return '/'
@@ -21,7 +21,7 @@ export function refLink(ref: string): string {
 
 export function refModule(ref: string) {
   const k = ref.split(':')[0]
-  return ({ b: 'Biblia', cic: 'Catecismo', enc: 'Encíclicas', san: 'Santos', ora: 'Oraciones' } as Record<string, string>)[k] || ''
+  return ({ b: 'Biblia', cic: 'Catecismo', enc: 'Documentos pontificios', san: 'Santos', ora: 'Oraciones' } as Record<string, string>)[k] || ''
 }
 
 export function refLabel(ref: string): string {
@@ -33,7 +33,7 @@ export function refLabel(ref: string): string {
   }
   const id = rest.split(':')[0]
   if (kind === 'cic') return 'CEC · ' + (CIC.find((u) => u.id === id)?.title || id)
-  if (kind === 'enc') return ENCICLICAS.find((e) => e.id === id)?.title || id
+  if (kind === 'enc') return vatTitle(id)
   if (kind === 'san') return SANTOS.find((s) => s.id === id)?.name || id
   if (kind === 'ora') return ORACIONES.find((o) => o.id === id)?.title || id
   return ref

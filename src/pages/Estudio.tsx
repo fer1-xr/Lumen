@@ -5,7 +5,7 @@ import { refLabel, refLink, refModule } from '../lib/refs'
 import { loadBook, normalize, parseVerseRef, bookNames } from '../lib/bible'
 import { plain } from '../lib/rich'
 import { CIC } from '../data/catecismo'
-import { ENCICLICAS } from '../data/enciclicas'
+import { loadVatDoc, loadVatIndex } from '../lib/vaticano'
 import { SANTOS } from '../data/santos'
 import { ORACIONES } from '../data/oraciones'
 import { useUI } from '../lib/ui'
@@ -26,7 +26,11 @@ async function refText(ref: string): Promise<string> {
   const [id, part = ''] = rest.split(':')
   const pick = (o: { summary?: string; key?: string[] } | undefined) => (part === 's' ? o?.summary : o?.key?.[+part.slice(1)]) || ''
   if (kind === 'cic') return plain(pick(CIC.find((u) => u.id === id)))
-  if (kind === 'enc') return plain(pick(ENCICLICAS.find((u) => u.id === id)))
+  if (kind === 'enc') {
+    await loadVatIndex()
+    const b = await loadVatDoc(id)
+    return /^\d+$/.test(part) ? plain(b[+part]?.[1] || '') : ''
+  }
   if (kind === 'san') {
     const s = SANTOS.find((u) => u.id === id)
     if (!s) return ''
@@ -54,7 +58,7 @@ function useRefTexts(refs: string[]) {
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 type View = 'todo' | 'resaltados' | 'comentarios' | 'marcadores' | 'ajustes'
-const MODULES = ['Biblia', 'Catecismo', 'Encíclicas', 'Santos', 'Oraciones']
+const MODULES = ['Biblia', 'Catecismo', 'Documentos pontificios', 'Santos', 'Oraciones']
 
 export function Estudio() {
   const [params, setParams] = useSearchParams()

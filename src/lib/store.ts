@@ -1,5 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { LEGACY } from './vaticano'
+
+/** Traslada las referencias de la antigua lista de encíclicas a los nuevos identificadores */
+const remap = (ref: string) => ref.replace(/^enc:([\w-]+)/, (m, id: string) => (LEGACY[id] ? 'enc:' + LEGACY[id] : m))
+function migrateEnc<T extends { read?: Record<string, number>; highlights?: { ref: string }[]; notes?: { ref: string }[]; bookmarks?: { ref: string }[] }>(p: T): T {
+  if (p.read) p.read = Object.fromEntries(Object.entries(p.read).map(([k, v]) => [remap(k), v]))
+  for (const list of [p.highlights, p.notes, p.bookmarks]) list?.forEach((x) => (x.ref = remap(x.ref)))
+  return p
+}
 
 export type ColorId = 'amarillo' | 'verde' | 'azul' | 'rosa' | 'naranja' | 'morado'
 
@@ -159,7 +168,7 @@ export const useStore = create<State>()(
         gardenSeen: s.gardenSeen,
       }),
       merge: (p, c) => {
-        const persisted = (p || {}) as Partial<State>
+        const persisted = migrateEnc((p || {}) as Partial<State>)
         return { ...c, ...persisted, settings: { ...defaultSettings, ...(persisted.settings || {}) } }
       },
     },

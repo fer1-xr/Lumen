@@ -20,7 +20,7 @@ const NAV = [
   { to: '/biblia', label: 'Biblia', icon: '📖' },
   { to: '/estudio', label: 'Resaltados y notas', icon: '🖍️' },
   { to: '/catecismo', label: 'Catecismo', icon: '✝️' },
-  { to: '/enciclicas', label: 'Encíclicas', icon: '📜' },
+  { to: '/enciclicas', label: 'Documentos pontificios', icon: '📜' },
   { to: '/santos', label: 'Santos', icon: '😇' },
   { to: '/oraciones', label: 'Oraciones', icon: '📿' },
   { to: '/planes', label: 'Planes', icon: '📅' },
