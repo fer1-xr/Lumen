@@ -32,6 +32,9 @@ function Shell() {
   const [open, setOpen] = useState(false)
   const loc = useLocation()
   const theme = useStore((s) => s.settings.theme)
+  const setSettings = useStore((s) => s.setSettings)
+  const dark = theme === 'oscuro'
+  const toggleDark = () => setSettings({ theme: dark ? 'claro' : 'oscuro' })
   useEffect(() => setOpen(false), [loc.pathname])
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -55,6 +58,10 @@ function Shell() {
             </NavLink>
           ))}
         </nav>
+        <button className="nav-item theme-toggle" onClick={toggleDark}>
+          <span className="nav-icon">{dark ? '☀️' : '🌙'}</span>
+          {dark ? 'Modo claro' : 'Modo oscuro'}
+        </button>
         <div className="sidebar-foot">
           Texto bíblico: Mons. J. Straubinger · Lugares: OpenBible.info (CC BY)
         </div>
@@ -67,6 +74,9 @@ function Shell() {
         <NavLink to="/" className="brand small">
           <span className="brand-mark">✠</span> Lumen
         </NavLink>
+        <button className="icon-btn" onClick={toggleDark} aria-label={dark ? 'Modo claro' : 'Modo oscuro'}>
+          {dark ? '☀️' : '🌙'}
+        </button>
         <NavLink to="/buscar" className="icon-btn" aria-label="Buscar">
           🔍
         </NavLink>
