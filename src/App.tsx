@@ -11,6 +11,7 @@ import { Buscar } from './pages/Buscar'
 import { Estudio } from './pages/Estudio'
 import { Overlays } from './components/Overlays'
 import { useStore } from './lib/store'
+import { Cuenta } from './pages/Cuenta'
 
 const Jardin = lazy(() => import('./pages/Jardin'))
 const Mapa = lazy(() => import('./pages/Mapa'))
@@ -26,6 +27,7 @@ const NAV = [
   { to: '/planes', label: 'Planes', icon: '📅' },
   { to: '/jardin', label: 'Jardín', icon: '🌳' },
   { to: '/mapa', label: 'Mapa 3D', icon: '🗺️' },
+  { to: '/cuenta', label: 'Mi cuenta', icon: '👤' },
 ]
 
 function Shell() {
@@ -99,6 +101,7 @@ function Shell() {
             <Route path="/jardin" element={<Jardin />} />
             <Route path="/mapa" element={<Mapa />} />
             <Route path="/estudio" element={<Estudio />} />
+            <Route path="/cuenta" element={<Cuenta />} />
             <Route path="*" element={<Inicio />} />
           </Routes>
         </Suspense>
