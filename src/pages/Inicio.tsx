@@ -107,7 +107,7 @@ export function Inicio() {
           </Link>
           <Link to="/estudio" className="stat">
             <span className="stat-icon">🖍️</span>
-            <span className="stat-label">Mi estudio</span>
+            <span className="stat-label">Resaltados y notas</span>
             <span className="stat-num">
               {hl} resaltados · {notes} comentarios
             </span>

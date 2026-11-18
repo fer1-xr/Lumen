@@ -16,9 +16,9 @@ Aplicación web para estudiar la Biblia católica (versión de Mons. Juan Straub
 | **Planes de lectura** | Evangelios en 30 días, NT en 90, Salmos y Proverbios en 60, Pentateuco en 40, Biblia en un año. |
 | **Jardín 3D** | 15 ciudades (Edén, Sinaí, Jericó, Jerusalén, Casa de la Sabiduría, Babilonia, Nínive, Jerusalén restaurada, Belén, Cafarnaúm, Roma, Éfeso, Vaticano, Asís, Nueva Jerusalén), cada una con 5 etapas que se construyen según lo que lees. Incluye «vista previa completa». |
 | **Mapa 3D** | Relieve real de Tierra Santa y del mundo bíblico, 1.336 lugares geolocalizados con sus citas, búsqueda, filtro por libro y rutas (Abraham, Éxodo, vida de Jesús, viajes de San Pablo). |
-| **Mi estudio** | Todos tus resaltados, comentarios y marcadores; significado de los colores; exportar/importar copia de seguridad (.json). |
+| **Resaltados y notas** | Apartado propio (en el menú y en la barra del lector) donde se reúnen automáticamente todos tus resaltados y comentarios, ordenados por libro y capítulo, con el versículo completo y tus notas debajo. Filtros por libro, color, módulo y #etiqueta; búsqueda; descarga en .txt e impresión; marcadores; significado de los colores y copia de seguridad (.json). |
 
-Los datos personales se guardan en el navegador (localStorage). Usa «Mi estudio → Copia de seguridad» para no perderlos.
+Los datos personales se guardan en el navegador (localStorage). Usa «Resaltados y notas → Colores y copia de seguridad» para no perderlos.
 
 ## Desarrollo
 

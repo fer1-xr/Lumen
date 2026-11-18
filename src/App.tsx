@@ -18,6 +18,7 @@ const Mapa = lazy(() => import('./pages/Mapa'))
 const NAV = [
   { to: '/', label: 'Inicio', icon: '🏠', end: true },
   { to: '/biblia', label: 'Biblia', icon: '📖' },
+  { to: '/estudio', label: 'Resaltados y notas', icon: '🖍️' },
   { to: '/catecismo', label: 'Catecismo', icon: '✝️' },
   { to: '/enciclicas', label: 'Encíclicas', icon: '📜' },
   { to: '/santos', label: 'Santos', icon: '😇' },
@@ -25,7 +26,6 @@ const NAV = [
   { to: '/planes', label: 'Planes', icon: '📅' },
   { to: '/jardin', label: 'Jardín', icon: '🌳' },
   { to: '/mapa', label: 'Mapa 3D', icon: '🗺️' },
-  { to: '/estudio', label: 'Mi estudio', icon: '🖍️' },
 ]
 
 function Shell() {

@@ -32,7 +32,7 @@ function NoteEditor() {
     if (!text.trim()) return close(null)
     if (ed.noteId) updateNote(ed.noteId, text.trim())
     else addNote({ ref: ed.ref, start: ed.start, end: ed.end, quote: ed.quote, text: text.trim() })
-    toast('Comentario guardado')
+    toast('Comentario guardado en «Resaltados y notas»')
     close(null)
   }
   return (

@@ -1576,3 +1576,132 @@ mark {
 .color-row .input {
   flex: 1;
 }
+
+/* ---------- Resaltados y notas ---------- */
+.study-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 6px 0 4px;
+}
+.study-stats > div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 14px;
+  color: var(--muted);
+}
+.study-stats b {
+  font-variant-numeric: lining-nums;
+  font-family: var(--display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-right: 4px;
+}
+.journal-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 14px 0 6px;
+}
+.journal-tools .input {
+  flex: 1;
+}
+.j-group {
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 4px;
+  margin-top: 1.6em;
+}
+.j-sub {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  margin: 14px 0 8px;
+}
+.j-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 18px 10px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+}
+.j-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.j-ref {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.j-colors {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: 1;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.j-color {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.j-go {
+  font-size: 0.85rem;
+}
+.j-text {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin: 8px 0;
+}
+.j-note {
+  border-left: 3px solid var(--gold);
+  background: color-mix(in srgb, var(--gold-soft) 35%, var(--surface));
+  border-radius: 0 10px 10px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+.j-note .note-text {
+  margin: 2px 0 4px;
+}
+.j-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.notes-link {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .hide-sm {
+    display: none;
+  }
+}
+@media print {
+  .sidebar,
+  .topbar,
+  .tabs,
+  .journal-tools,
+  .filters,
+  .j-actions,
+  .j-go,
+  .note-meta button {
+    display: none !important;
+  }
+  .shell {
+    display: block;
+  }
+  .j-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

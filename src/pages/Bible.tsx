@@ -194,6 +194,9 @@ export function Reader() {
           ))}
         </select>
         <span className="spacer" />
+        <Link className="icon-btn notes-link" to={`/estudio?libro=${book}`} title="Mis resaltados y notas de este libro">
+          🖍️<span className="hide-sm"> Mis notas</span>
+        </Link>
         <button className={'icon-btn' + (isBookmarked ? ' on' : '')} title="Marcador" onClick={() => toggleBookmark(key, chapterLabel)}>
           {isBookmarked ? '🔖' : '🏷️'}
         </button>
