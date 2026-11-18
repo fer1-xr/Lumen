@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { PELICULAS, isFile, toEmbed, type Pelicula } from '../data/peliculas'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { PELICULAS, isFile, poster, previewSrc, toEmbed, type Pelicula } from '../data/peliculas'
 import { useMedia } from '../lib/media'
 import { useStore } from '../lib/store'
 import { normalize } from '../lib/bible'
@@ -18,6 +18,8 @@ export function PeliculasHome() {
   const [q, setQ] = useState('')
   const [tag, setTag] = useState('')
   const [adding, setAdding] = useState(false)
+  const [prev, setPrev] = useState<Pelicula | null>(null)
+  const nav = useNavigate()
   const [form, setForm] = useState({ title: '', url: '', year: '', synopsis: '' })
   const tags = [...new Set(all.flatMap((p) => p.tags))].sort()
   const list = all.filter((p) => (!tag || p.tags.includes(tag)) && (!q || normalize(p.title + (p.original || '') + p.director + p.synopsis).includes(normalize(q))))
@@ -35,7 +37,7 @@ export function PeliculasHome() {
     <div className="page">
       <header className="page-head">
         <h1>Películas católicas</h1>
-        <p className="subtitle">Cine clásico de fe para ver dentro de Lumen. Las obras del catálogo son de dominio público y se reproducen desde Internet Archive.</p>
+        <p className="subtitle">Cine clásico de fe para ver dentro de Lumen. Clásicos de dominio público (Internet Archive) y películas de santos publicadas en YouTube. Toca una para ver la previsualización.</p>
       </header>
       <div className="row gap wrap filters">
         <input className="input" placeholder="Buscar película, director…" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -60,9 +62,10 @@ export function PeliculasHome() {
       )}
       <div className="film-grid">
         {list.map((p) => (
-          <Link key={p.id} to={`/peliculas/${p.id}`} className={'film-card' + (read['film:' + p.id] ? ' done' : '')}>
+          <button key={p.id} onClick={() => setPrev(p)} className={'film-card' + (read['film:' + p.id] ? ' done' : '')}>
             <div className="film-poster">
-              <span className="film-year">{p.year}</span>
+              {poster(p) && <img src={poster(p)!} alt="" loading="lazy" />}
+              {p.year > 0 && <span className="film-year">{p.year}</span>}
               <span className="film-play">▶</span>
               <span className="film-ptitle">{p.title}</span>
             </div>
@@ -72,10 +75,34 @@ export function PeliculasHome() {
               <div className="chips">{p.tags.map((t) => <span key={t} className="chip">{t}</span>)}</div>
             </div>
             {read['film:' + p.id] && <span className="ok corner">✓</span>}
-          </Link>
+          </button>
         ))}
       </div>
       {!list.length && <p className="muted">No hay resultados.</p>}
+      {prev && (
+        <div className="lightbox film-preview-bg" onClick={() => setPrev(null)}>
+          <div className="film-preview" onClick={(e) => e.stopPropagation()}>
+            <div className="video-frame">
+              {previewSrc(prev) ? (
+                <iframe src={previewSrc(prev)!} title="Previsualización" allow="autoplay; encrypted-media" />
+              ) : poster(prev) ? (
+                <img className="preview-img" src={poster(prev)!} alt={prev.title} />
+              ) : null}
+              <span className="preview-badge">Previsualización</span>
+            </div>
+            <div className="film-preview-body">
+              <div className="doc-kicker">{prev.year > 0 ? prev.year + ' · ' : ''}{prev.director}{prev.minutes ? ` · ${prev.minutes} min` : ''} · {prev.source}</div>
+              <h2>{prev.title}</h2>
+              <p>{prev.synopsis}</p>
+              <div className="chips">{prev.tags.map((t) => <span key={t} className="chip">{t}</span>)}</div>
+              <div className="row gap" style={{ marginTop: 14 }}>
+                <button className="btn primary big" onClick={() => nav(`/peliculas/${prev.id}`)}>▶ Ver película</button>
+                <button className="btn" onClick={() => setPrev(null)}>Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -97,7 +124,7 @@ export function PeliculaView() {
           <iframe src={p.src} title={p.title} allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowFullScreen />
         )}
       </div>
-      <div className="doc-kicker">{p.year} · {p.director}{p.minutes ? ` · ${p.minutes} min` : ''} · Fuente: {p.source}</div>
+      <div className="doc-kicker">{p.year > 0 ? p.year + ' · ' : ''}{p.director}{p.minutes ? ` · ${p.minutes} min` : ''} · Fuente: {p.source}</div>
       <h1>{p.title}</h1>
       {p.original && p.original !== p.title && <p className="doc-theme">{p.original}</p>}
       <p className="lead">{p.synopsis}</p>
@@ -110,7 +137,7 @@ export function PeliculaView() {
         <>
           <h2>También te puede gustar</h2>
           <div className="row gap wrap">
-            {related.map((r) => <Link key={r.id} to={`/peliculas/${r.id}`} className="chip big">🎬 {r.title} ({r.year})</Link>)}
+            {related.map((r) => <Link key={r.id} to={`/peliculas/${r.id}`} className="chip big">🎬 {r.title}{r.year > 0 ? ` (${r.year})` : ''}</Link>)}
           </div>
         </>
       )}
