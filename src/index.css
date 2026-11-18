@@ -1705,3 +1705,11 @@ mark {
     break-inside: avoid;
   }
 }
+
+/* Catecismo: texto íntegro */
+.cic-full { margin-top: 24px; }
+.cic-full > h2 { font-family: var(--display); }
+.cic-text .cic-h { font-family: var(--display); margin: 22px 0 6px; letter-spacing: 0.02em; }
+.cic-text .cic-p { margin: 0 0 12px; }
+.cic-text .cic-n { display: inline-block; min-width: 2.6em; margin-right: 6px; color: var(--muted); font-family: var(--display); font-size: 0.85em; }
+.cic-text blockquote { margin: 0 0 12px 2.2em; padding-left: 14px; border-left: 3px solid var(--line); font-size: 0.97em; }

@@ -419,3 +419,22 @@ export const CIC: CicUnit[] = [
 ]
 
 export const cicUrl = (id: string) => CIC_BASE + (id.endsWith('_sp') ? id + '.html' : id + '_sp.html')
+
+/** Texto íntegro, número por número (fuente: vatican.va), cargado bajo demanda */
+export interface CicPara {
+  n: number
+  h?: string[]
+  b: { t: string; q?: 1 }[]
+}
+const cicCache = new Map<string, Promise<CicPara[]>>()
+export function loadCicText(id: string): Promise<CicPara[]> {
+  let p = cicCache.get(id)
+  if (!p) {
+    p = fetch(`${import.meta.env.BASE_URL}data/cic/${id}.json`).then((r) => {
+      if (!r.ok) throw new Error('No se pudo cargar el texto')
+      return r.json()
+    })
+    cicCache.set(id, p)
+  }
+  return p
+}
